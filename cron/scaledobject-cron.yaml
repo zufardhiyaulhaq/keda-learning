@@ -6,6 +6,8 @@ metadata:
 spec:
   scaleTargetRef:
     name: nginx-deployment  
+    apiVersion: apps/v1
+    kind: Deployment
   minReplicaCount: 0 
   maxReplicaCount: 10
   triggers:

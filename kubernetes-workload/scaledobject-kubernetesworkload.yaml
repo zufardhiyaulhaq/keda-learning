@@ -1,0 +1,26 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: nginx-kubernetes-workload-scaler
+  namespace: keda-testing
+spec:
+  scaleTargetRef:
+    name: target-nginx-deployment
+    apiVersion: apps/v1
+    kind: Deployment
+  minReplicaCount: 1
+  maxReplicaCount: 20
+  triggers:
+  - type: kubernetes-workload
+    metadata:
+      podSelector: 'app=reference-nginx'
+      value: '2'
+  advanced:
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 0
+          policies:
+          - type: Percent
+            value: 100
+            periodSeconds: 15

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: target-nginx-deployment
+  namespace: keda-testing
+  labels:
+    app: target-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: target-nginx
+  template:
+    metadata:
+      labels:
+        app: target-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,19 @@
+apiVersion: http.keda.sh/v1alpha1
+kind: HTTPScaledObject
+metadata:
+  name: nginx-http-scaler
+  namespace: keda-testing
+spec:
+  hosts:
+  - "nginx.example.com"
+  pathPrefixes:
+  - /
+  scaleTargetRef:
+    name: nginx-deployment
+    kind: Deployment
+    apiVersion: apps/v1
+    service: nginx-service
+    port: 8080
+  replicas:
+    min: 0
+    max: 10

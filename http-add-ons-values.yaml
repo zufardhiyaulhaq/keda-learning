@@ -1,0 +1,16 @@
+crds:
+  install: true
+
+operator:
+  replicas: 1
+
+scaler:
+  replicas: 3
+
+interceptor:
+  replicas:
+    min: 3
+    max: 50
+
+  scaledObject:
+    pollingInterval: 1

@@ -1,0 +1,11 @@
+operator:
+  replicaCount: 2
+
+metricsServer:
+  replicaCount: 2
+
+webhooks:
+  replicaCount: 2
+
+crds:
+  install: true
